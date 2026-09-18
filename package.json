@@ -1,0 +1,15 @@
+{
+  "name": "ict461-course-registration",
+  "version": "1.0.0",
+  "description": "Mulungushi University ICT461 Lab - Course Registration Portal (interface + API)",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "serve": "npx serve public -l 5500"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}
