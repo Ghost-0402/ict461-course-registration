@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mulungushi University — Course Registration</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Mulungushi University</h1>
+    <p class="tagline">Course Registration Portal</p>
+  </header>
+
+  <nav class="site-nav" aria-label="Primary">
+    <ul>
+      <li><a href="#register">Register</a></li>
+      <li><a href="#lookup">Find registration</a></li>
+      <li><a href="#about">About this demo</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="register" aria-labelledby="register-heading">
+      <h2 id="register-heading">New registration</h2>
+
+      <form id="registration-form" novalidate>
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" required autocomplete="name" />
+        </div>
+
+        <div class="field">
+          <label for="studentId">Student ID</label>
+          <input type="text" id="studentId" name="studentId" required autocomplete="off" />
+        </div>
+
+        <div class="field">
+          <label for="programme">Programme</label>
+          <select id="programme" name="programme" required>
+            <option value="" disabled selected>Select a programme</option>
+            <option value="BSc Computer Science">BSc Computer Science</option>
+            <option value="BSc Information Technology">BSc Information Technology</option>
+            <option value="BSc Software Engineering">BSc Software Engineering</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="course">Course</label>
+          <select id="course" name="course" required>
+            <option value="" disabled selected>Loading courses…</option>
+          </select>
+        </div>
+
+        <button type="submit" id="submit-btn">Register</button>
+
+        <div id="feedback" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <section id="lookup" aria-labelledby="lookup-heading">
+      <h2 id="lookup-heading">Find a registration</h2>
+      <div class="field">
+        <label for="lookup-id">Registration ID</label>
+        <input type="text" id="lookup-id" />
+        <button type="button" id="lookup-btn">Look up</button>
+      </div>
+      <div id="lookup-result" role="status" aria-live="polite"></div>
+    </section>
+
+    <section id="about" aria-labelledby="about-heading">
+      <h2 id="about-heading">About this demo</h2>
+      <p>
+        This is a teaching prototype for ICT461 (Web standards and HTTP
+        fundamentals). Data is stored in memory on the server and is reset
+        whenever the server restarts. It does not use a real database or
+        authentication.
+      </p>
+      <p>
+        Your <strong>programme</strong> choice is remembered between visits
+        using <code>localStorage</code>, which persists until explicitly
+        cleared. <code>sessionStorage</code> would behave differently: it
+        would only last for the current browser tab and would be cleared as
+        soon as that tab is closed, so it is better suited to short-lived,
+        per-tab state rather than a lasting preference like this one.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Mulungushi University — ICT461 lab prototype.</p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
