@@ -1,9 +1,46 @@
-// app.js — module script; imports the Fetch helper from api.js.
-import {
-  fetchCourses,
-  fetchRegistration,
-  createRegistration,
-} from "./api.js";
+// app.js — combined with api.js's Fetch helper to cut one HTTP request.
+
+const API_BASE = "http://localhost:3000";
+
+async function request(path, options = {}) {
+  const response = await fetch(`${API_BASE}${path}`, options);
+
+  if (!response.ok) {
+    let message = response.statusText;
+    try {
+      const data = await response.json();
+      if (data && data.error) message = data.error;
+      if (data && data.errors) message = data.errors.join(" ");
+    } catch {
+      /* body wasn't JSON — ignore and use statusText */
+    }
+    const error = new Error(message);
+    error.status = response.status;
+    throw error;
+  }
+
+  if (response.status === 204) {
+    return null;
+  }
+
+  return response.json();
+}
+
+function fetchCourses() {
+  return request("/api/courses");
+}
+
+function fetchRegistration(id) {
+  return request(`/api/registrations/${encodeURIComponent(id)}`);
+}
+
+function createRegistration(data) {
+  return request("/api/registrations", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+}
 
 const form = document.getElementById("registration-form");
 const feedback = document.getElementById("feedback");
